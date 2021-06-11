@@ -18,9 +18,9 @@ public interface BlogMapper {
     @Select("select * from blog where id =#{blogId}")
     List<Blog> getBlog(@Param("blogId") Integer blogId);
 
-    @Insert("INSERT into blog(title,description,content,created) VALUES(#{title},#{description},#{content},#{created})")
+    @Insert("INSERT into blog(title,description,content,created,status) VALUES(#{title},#{description},#{content},#{created},'1')")
     int addBlog(@Param("title") String title, @Param("description") String description, @Param("content") String content, @Param("created") String created);
 
-    @Update("update blog set(title,description,content,created) where id=#{id}  VALUES(#{title},#{description},#{content},#{created}")
-    int editBlog(Integer id, String title, String description, String content, String created);
+    @Update("UPDATE blog set title=#{title},description=#{description},content=#{content},created=#{created},status = 1 where id=#{blogId}")
+    int editBlog(@Param("blogId") Integer blogId,@Param("title") String title, @Param("description") String description,@Param("content") String content,@Param("created") String created);
 }

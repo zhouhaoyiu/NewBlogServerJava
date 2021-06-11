@@ -51,26 +51,26 @@ public class blogController {
         String content = request.getParameter("content");
         String created = request.getParameter("created");
         int result = blogMapper.addBlog(title, description, content, created);
-        JSONObject json = new JSONObject();
-        if (result == 0) {
-            json.put("code", "1001");
-            json.put("message", "fail");
-        } else {
-            json.put("code", "1000");
-            json.put("message", "success");
-        }
-        return json;
+        return getObject(result);
     }
 
     @PostMapping("editBlog")
     public Object editBlog(HttpServletRequest request, HttpServletResponse response) {
-        Integer id = Integer.valueOf(request.getParameter("id"));
+        Integer blogId = Integer.valueOf(request.getParameter("id"));
         String title = request.getParameter("title");
         String description = request.getParameter("description");
         String content = request.getParameter("content");
         String created = request.getParameter("created");
+        System.out.println(title);
+        System.out.println(created);
+        System.out.println(description);
+        System.out.println(content);
 
-        int result = blogMapper.editBlog(id,title, description, content, created);
+        int result = blogMapper.editBlog(blogId,title, description, content, created);
+        return getObject(result);
+    }
+
+    private Object getObject(int result) {
         JSONObject json = new JSONObject();
         if (result == 0) {
             json.put("code", "1001");
