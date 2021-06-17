@@ -21,6 +21,6 @@ public interface BlogMapper {
     @Insert("INSERT into blog(title,description,content,created,status) VALUES(#{title},#{description},#{content},#{created},'1')")
     int addBlog(@Param("title") String title, @Param("description") String description, @Param("content") String content, @Param("created") String created);
 
-    @Update("UPDATE blog set title=#{title},description=#{description},content=#{content},created=#{created},status = 1 where id=#{blogId}")
+    @Update("UPDATE blog set title=#{title},description=#{description},content=#{content},created=#{created},status=1 where id=#{blogId}")
     int editBlog(@Param("blogId") Integer blogId,@Param("title") String title, @Param("description") String description,@Param("content") String content,@Param("created") String created);
 }
