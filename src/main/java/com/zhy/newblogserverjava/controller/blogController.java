@@ -7,13 +7,12 @@ import lombok.extern.slf4j.Slf4j;
 import net.sf.json.JSON;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
 
 @Slf4j
@@ -61,12 +60,16 @@ public class blogController {
         String description = request.getParameter("description");
         String content = request.getParameter("content");
         String created = request.getParameter("created");
+//        System.out.println(request);
         System.out.println(title);
         System.out.println(created);
         System.out.println(description);
         System.out.println(content);
 
-        int result = blogMapper.editBlog(blogId,title, description, content, created);
+        int result = 0;
+
+        result = blogMapper.editBlog(blogId, title, description, content, created);
+
         return getObject(result);
     }
 
