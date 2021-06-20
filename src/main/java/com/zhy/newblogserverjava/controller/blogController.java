@@ -4,15 +4,15 @@ package com.zhy.newblogserverjava.controller;
 import com.zhy.newblogserverjava.domain.Blog;
 import com.zhy.newblogserverjava.mapper.BlogMapper;
 import lombok.extern.slf4j.Slf4j;
-import net.sf.json.JSON;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.List;
 
 @Slf4j
@@ -27,7 +27,7 @@ public class blogController {
 
         List<Blog> blog = blogMapper.selectAllBlogs();
         JSONObject json = new JSONObject();
-        System.out.println(blog);
+//        System.out.println(blog);
         json.put("code", 1000);
         json.put("blog", blog);
         return json;
@@ -61,10 +61,10 @@ public class blogController {
         String content = request.getParameter("content");
         String created = request.getParameter("created");
 //        System.out.println(request);
-        System.out.println(title);
-        System.out.println(created);
-        System.out.println(description);
-        System.out.println(content);
+//        System.out.println(title);
+//        System.out.println(created);
+//        System.out.println(description);
+//        System.out.println(content);
 
         int result = 0;
 

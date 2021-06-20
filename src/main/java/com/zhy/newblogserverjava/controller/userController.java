@@ -25,7 +25,7 @@ public class userController {
 
         List<User> user = userMapper.selectAllUsers();
         JSONObject json = new JSONObject();
-        System.out.println(user);
+//        System.out.println(user);
         json.put("user", user);
         return json;
 
