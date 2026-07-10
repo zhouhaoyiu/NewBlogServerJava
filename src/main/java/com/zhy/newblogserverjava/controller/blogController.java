@@ -4,16 +4,17 @@ package com.zhy.newblogserverjava.controller;
 import com.zhy.newblogserverjava.domain.Blog;
 import com.zhy.newblogserverjava.mapper.BlogMapper;
 import lombok.extern.slf4j.Slf4j;
-import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @RequestMapping("blog")
@@ -26,7 +27,7 @@ public class blogController {
     public Object getAllUsers(HttpServletRequest request, HttpServletResponse response) {
 
         List<Blog> blog = blogMapper.selectAllBlogs();
-        JSONObject json = new JSONObject();
+        Map<String, Object> json = new HashMap<>();
 //        System.out.println(blog);
         json.put("code", 1000);
         json.put("blog", blog);
@@ -37,7 +38,7 @@ public class blogController {
     public Object getBlog(HttpServletRequest request, HttpServletResponse response) {
         Integer blogId = Integer.valueOf(request.getParameter("blogId"));
         List<Blog> blog = blogMapper.getBlog(blogId);
-        JSONObject json = new JSONObject();
+        Map<String, Object> json = new HashMap<>();
         json.put("code", 1000);
         json.put("blog", blog);
         return json;
@@ -74,7 +75,7 @@ public class blogController {
     }
 
     private Object getObject(int result) {
-        JSONObject json = new JSONObject();
+        Map<String, Object> json = new HashMap<>();
         if (result == 0) {
             json.put("code", "1001");
             json.put("message", "fail");
